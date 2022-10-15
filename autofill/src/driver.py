@@ -33,7 +33,7 @@ class AutofillDriver:
     )  # delay initialisation until XML is selected and parsed
     driver_callable: Callable[[bool], WebDriver] = attr.ib(default=get_chrome_driver)
     headless: bool = attr.ib(default=False)
-    starting_url: str = attr.ib(init=False, default="https://www.makeplayingcards.com/design/custom-blank-card.html")
+    starting_url: str = attr.ib(init=False, default="https://www.makeplayingcards.com/design/custom-blank-card-traditional-size.html")
     order: CardOrder = attr.ib(default=attr.Factory(CardOrder.from_xml_in_folder))
     state: str = attr.ib(init=False, default=States.initialising)
     action: Optional[str] = attr.ib(init=False, default=None)
@@ -323,7 +323,7 @@ class AutofillDriver:
         # Switch the finish to foil if the user ordered foil cards
         if self.order.details.foil:
             foil_dropdown = Select(self.driver.find_element(by=By.ID, value="dro_product_effect"))
-            foil_dropdown.select_by_value("EF_055")
+            foil_dropdown.select_by_value("EF_057")
 
         self.set_state(States.paging_to_fronts)
 
